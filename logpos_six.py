@@ -1,3 +1,4 @@
+import os
 from pyOlog.ophyd_tools import _normalize_positioners, _print_pos
 
 
@@ -14,6 +15,9 @@ def log_pos(positioners=None, extra_msg=None, objlen=200):
     int
         The ID of the logbook entry returned by the logbook.log method.
     """
+    if os.getenv("TEST"):
+        print('Testing')
+        return
     positioners = _normalize_positioners(positioners)
     logbook = get_logbook()
     if extra_msg:
@@ -22,7 +26,6 @@ def log_pos(positioners=None, extra_msg=None, objlen=200):
         msg = ''
 
     with closing(StringIO()) as sio:
-        _print_pos(positioners, file=sio)
         msg += sio.getvalue()
 
     # Add the text representation of the positioners
