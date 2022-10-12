@@ -58,3 +58,7 @@ def log_pos(positioners=None, extra_msg=None, objlen=200):
 
         print('Logbook positions added as Logbook ID {}'.format(id_))
         return id_
+
+
+def test():
+    pass
